@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\WechatController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('/', function () {
+    return "welcome";
 });
+
+Route::post('/wechat/session', [WechatController::class, 'getSession']);
+Route::post('/wechat/login', [WechatController::class, 'login']);
+Route::post('/wechat/logout', [WechatController::class, 'logout']);
